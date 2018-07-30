@@ -1,0 +1,40 @@
+{
+    "name": "mrstroz/propagate",
+    "description": "Propagate entries between sites",
+    "type": "craft-plugin",
+    "version": "0.0.1",
+    "keywords": [
+        "craft",
+        "cms",
+        "craftcms",
+        "craft-plugin",
+        "propagate"
+    ],
+    "support": {
+        "docs": "https://github.com/mrstroz/craft-propagate/blob/master/README.md",
+        "issues": "https://github.com/mrstroz/craft-propagate/issues"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mariusz Stróż",
+            "homepage": "inwave.eu"
+        }
+    ],
+    "require": {
+        "craftcms/cms": "^3.0.0-RC1"
+    },
+    "autoload": {
+        "psr-4": {
+          "mrstroz\\propagate\\": "src/"
+        }
+    },
+    "extra": {
+        "name": "propagate",
+        "handle": "propagate",
+        "hasCpSettings": false,
+        "hasCpSection": true,
+        "changelogUrl": "https://raw.githubusercontent.com/mrstroz/craft-propagate/master/CHANGELOG.md",
+        "class": "mrstroz\\propagate\\Propagate"
+    }
+}

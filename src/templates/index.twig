@@ -1,0 +1,81 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{#
+/**
+ * propagate plugin for Craft CMS 3.x
+ *
+ * propagate index.twig
+ *
+ * @author    Mariusz Stróż
+ * @copyright Copyright (c) 2018 Mariusz Stróż
+ * @link      inwave.eu
+ * @package   Propagate
+ * @since     0.0.1
+ */
+#}
+
+{% extends "_layouts/cp" %}
+
+{% import "_includes/forms" as forms %}
+
+{% set fullPageForm = true %}
+
+{% do view.registerAssetBundle("mrstroz\\propagate\\assetbundles\\indexcpsection\\IndexCPSectionAsset") %}
+
+{# The title of this CP section #}
+{% set title = "Propagate entries" %}
+
+{# The URL to this plugin's base CP section #}
+{% set pluginCpUrl = url('propagate') %}
+
+
+{% block actionButton %}
+    <button type="submit" class="btn submit">{{ 'Propagate'|t('propagate') }}</button>
+{% endblock %}
+
+{# The content of the CP Section#}
+{% set content %}
+    <h2>{{ "Please choose sites and sections for propagate."|t('propagate') }}</h2>
+    <h3>{{ "Data will be propagated only for empty enties in destination site. "|t('propagate') }}</h3>
+
+    {% namespace 'propagate' %}
+
+        {{ forms.selectField({
+            first: true,
+            label: 'Source site'|t('propagate'),
+            id: 'source_site_id',
+            name: 'source_site_id',
+            options: sites,
+            value: model.source_site_id,
+            errors: model.getErrors('source_site_id'),
+            autofocus: true,
+            required: true,
+        }) }}
+
+        {{ forms.selectField({
+            first: true,
+            label: 'Destionation site'|t('propagate'),
+            id: 'destination_site_id',
+            name: 'destination_site_id',
+            options: sites,
+            value: model.destination_site_id,
+            errors: model.getErrors('destination_site_id'),
+            autofocus: true,
+            required: true,
+        }) }}
+
+
+        {{ forms.checkboxSelectField({
+            id: 'section_id',
+            name: 'section_id',
+            label: 'Sections' | t('propagate'),
+            showAllOption: true,
+            options: sections,
+            value: model.section_id,
+            errors: model.getErrors('section_id'),
+            required: true,
+        }) }}
+
+
+    {% endnamespace %}
+
+{% endset %}
